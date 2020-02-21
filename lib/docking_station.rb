@@ -20,7 +20,7 @@ DEFAULT_CAPACITY = 20
 
   private
   def full?
-    @station.length >= DEFAULT_CAPACITY 
+    @station.length >= @capacity
   end
   def empty?
     @station.length > 0
