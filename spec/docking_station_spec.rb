@@ -20,13 +20,18 @@ describe DockingStation do
   it "docks bike" do
     bike = Bike.new
     subject.dock(bike)
-    expect(subject.station).to eq bike # the bike that has been docked get stored in the station variable
+    expect(subject.station[-1]).to eq bike # the bike that has been docked get stored in the station variable
   end
 
   it "raises an error if #release_bike and there is no bikes" do
-
     expect{subject.release_bike}.to raise_error("No bikes available")
   end
+
+  it "raises an error if #dock and there is no space" do
+    20.times {subject.dock(Bike.new)}
+    expect{subject.dock(Bike.new)}.to raise_error("No space available")
+  end
+
 
 end
 
