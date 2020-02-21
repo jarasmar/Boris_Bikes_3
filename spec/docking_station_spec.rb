@@ -28,11 +28,18 @@ describe DockingStation do
   end
 
   it "raises an error if #dock and there is no space" do
-    20.times {subject.dock(Bike.new)}
+    DockingStation::DEFAULT_CAPACITY.times {subject.dock(Bike.new)} #when calling constant in tests you need to use this syntax Class::CONSTANT
     expect{subject.dock(Bike.new)}.to raise_error("No space available")
   end
 
+  it "allows to set capacity" do
+    expect{DockingStation.new(15)}.not_to raise_error
+  end
 
+  it "creates station with capacity of 12" do
+    station = DockingStation.new(12)
+    expect(station.capacity).to eq 12
+  end
 end
 
 
